@@ -1,3 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using MovieStoreApp.Core.Contract.Repository;
+using MovieStoreApp.Core.Contract.Service;
+using MovieStoreApp.Infrastructure.Data;
+using MovieStoreApp.Infrastructure.Repository;
+using MovieStoreApp.Infrastructure.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -6,6 +13,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<MovieContext>(option =>
+{
+    option.UseSqlServer(builder.Configuration.GetConnectionString("MovieStore"));
+});
+
+// repository
+builder.Services.AddScoped<IMovieRepositoryAsync, MovieRepositoryAsync>();
+
+
+
+//services
+builder.Services.AddScoped<IMovieServiceAsync, MovieServiceAsync>();
+
 #endregion
 
 
