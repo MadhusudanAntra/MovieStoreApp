@@ -19,8 +19,4 @@
     <ProjectReference Include="..\MovieStoreApp.Infrastructure\MovieStoreApp.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repository\" />
-  </ItemGroup>
-
 </Project>

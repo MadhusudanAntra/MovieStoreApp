@@ -6,23 +6,26 @@ namespace MovieStoreApp.WebMVC.Controllers
     public class MovieController : Controller
     {
         IMovieServiceAsync movieService;
-        public MovieController(IMovieServiceAsync ser)
+        IMovieCastService movieCastService;
+        public MovieController(IMovieServiceAsync ser, IMovieCastService service)
         {
             movieService = ser;
+            movieCastService = service;
         }
 
         public async Task<IActionResult> Index()
         {
             ViewBag.Title = "All Movies";
 
-            var result =await movieService.GetTop10RevenueMoviesAsync();
+           // var result =await movieService.GetTop10RevenueMoviesAsync();
 
-            return View(result);
+            return View();
         }
 
         public async Task<IActionResult> Detail(int movieId)
         { 
             var result =await movieService.GetByIdAsync(movieId);
+            result.MovieCasts= await movieCastService.GetAllByMovieId(movieId);
             return View(result);
         }
 

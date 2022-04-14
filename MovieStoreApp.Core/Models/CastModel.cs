@@ -5,16 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace MovieStoreApp.Core.Entity
+namespace MovieStoreApp.Core.Models
 {
-    public class Cast
+    public class CastModel
     {
         public int Id { get; set; }
-        
+
         [MaxLength(100)]
-        [Column(TypeName ="Varchar")]
+        [Column(TypeName = "Varchar")]
         public string Name { get; set; }
-        
+
         public int Gender { get; set; }
         [MaxLength(100)]
         [Column(TypeName = "Varchar")]
@@ -23,6 +23,6 @@ namespace MovieStoreApp.Core.Entity
         [Column(TypeName = "Varchar")]
         public string ProfilePath { get; set; }
 
-        public virtual ICollection<MovieCast> MovieCasts { get; set; }
+        public virtual ICollection<MovieCastModel> MovieCasts { get; set; }
     }
 }

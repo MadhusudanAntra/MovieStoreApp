@@ -65,5 +65,30 @@ namespace MovieStoreApp.Infrastructure.Service
             }
             return lstMovieResponse;
         }
+
+        public async Task<IEnumerable<MovieResponseModel>> GetTop3LatestMoviesAsync()
+        {
+            var result = await movieRepository.GetTop3LatestMoviesAsync();
+            List<MovieResponseModel> lstMovieResponse = new List<MovieResponseModel>();
+            foreach (var movie in result)
+            {
+                MovieResponseModel model = new MovieResponseModel();
+                model.Id = movie.Id;
+                model.Overview = movie.Overview;
+                model.ImdbUrl = movie.ImdbUrl;
+                model.OriginalLanguage = movie.OriginalLanguage;
+                model.Tagline = movie.Tagline;
+                model.PosterUrl = movie.PosterUrl;
+                model.Price = movie.Price;
+                model.ReleaseDate = movie.ReleaseDate;
+                model.Revenue = movie.Revenue;
+                model.Runtime = movie.Runtime;
+                model.TmdbUrl = movie.TmdbUrl;
+                model.Title = movie.Title;
+                model.Budget = movie.Budget;
+                lstMovieResponse.Add(model);
+            }
+            return lstMovieResponse;
+        }
     }
 }

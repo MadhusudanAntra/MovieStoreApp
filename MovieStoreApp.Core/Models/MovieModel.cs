@@ -39,5 +39,9 @@ namespace MovieStoreApp.Core.Models
         public DateTime ReleaseDate { get; set; }
         public int Runtime { get; set; }
         public decimal? Price { get; set; }
+
+
+        public virtual IEnumerable<MovieCastModel> MovieCasts { get; set; }
+
     }
 }

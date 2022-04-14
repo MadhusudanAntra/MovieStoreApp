@@ -40,5 +40,8 @@ namespace MovieStoreApp.Core.Entity
         public int Runtime { get; set; }
         public decimal? Price { get; set; }
 
+
+        public virtual ICollection<MovieCast> MovieCasts { get; set; }
+
     }
 }

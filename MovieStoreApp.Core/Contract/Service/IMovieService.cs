@@ -9,6 +9,7 @@ namespace MovieStoreApp.Core.Contract.Service
     public interface IMovieServiceAsync
     {
         Task<IEnumerable<MovieResponseModel>> GetTop10RevenueMoviesAsync();
+        Task<IEnumerable<MovieResponseModel>> GetTop3LatestMoviesAsync();
         Task<MovieResponseModel> GetByIdAsync(int id);
     }
 }
