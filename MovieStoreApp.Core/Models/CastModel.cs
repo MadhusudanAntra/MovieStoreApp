@@ -30,6 +30,6 @@ namespace MovieStoreApp.Core.Models
         [DataType(DataType.Url)]
         public string ProfilePath { get; set; }
 
-        public virtual ICollection<MovieCastModel> MovieCasts { get; set; }
+        //public virtual ICollection<MovieCastModel> MovieCasts { get; set; }
     }
 }
