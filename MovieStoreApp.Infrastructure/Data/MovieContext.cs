@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MovieStoreApp.Core.Entity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 namespace MovieStoreApp.Infrastructure.Data
 {
-    public class MovieContext:DbContext
+    public class MovieContext:IdentityDbContext<MovieUser>
     {
         public MovieContext(DbContextOptions<MovieContext> option):base(option)
         {

@@ -28,12 +28,18 @@ namespace MovieStoreApp.Infrastructure.Service
           return await  castRepositoryAsync.InsertAsync(c);
         }
 
+        public async Task<int> DeleteCastAsync(int id)
+        {
+            return await castRepositoryAsync.DeleteAsync(id);
+        }
+
         public async Task<IEnumerable<CastModel>> GetAllCastAsync()
         {
             var result = await castRepositoryAsync.GetAllAsync();
             if (result != null)
             {
                 List<CastModel> list = new List<CastModel>();
+                result = result.OrderByDescending(x => x.Id);
                 foreach (var item in result)
                 {
                     CastModel model = new CastModel();
@@ -63,6 +69,40 @@ namespace MovieStoreApp.Infrastructure.Service
                 return model;
             }
             return null;
+        }
+
+        
+        public async Task<IEnumerable<CastModel>> GetLatest10Async()
+        {
+            var result = await castRepositoryAsync.GetLatest10RowsAsync();
+            if (result != null)
+            {
+                List<CastModel> list = new List<CastModel>();
+             
+                foreach (var item in result)
+                {
+                    CastModel model = new CastModel();
+                    model.Id = item.Id;
+                    model.Name = item.Name;
+                    model.TmdbUrl = item.TmdbUrl;
+                    model.ProfilePath = item.ProfilePath;
+                    model.Gender = item.Gender;
+                    list.Add(model);
+                }
+                return list;
+            }
+            return null;
+        }
+
+        public async Task<int> UpdateCastAsync(CastModel model)
+        {
+            Cast c = new Cast();
+            c.Name = model.Name;
+            c.TmdbUrl = model.TmdbUrl;
+            c.ProfilePath = model.ProfilePath;
+            c.Gender = model.Gender;
+            c.Id = model.Id;
+            return await castRepositoryAsync.UpdateAsync(c);
         }
     }
 }

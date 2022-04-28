@@ -9,5 +9,6 @@ namespace MovieStoreApp.Core.Contract.Repository
 {
     public interface ICastRepositoryAsync:IRepositoryAsync<Cast>
     {
+        Task<IEnumerable<Cast>> GetLatest10RowsAsync();
     }
 }
